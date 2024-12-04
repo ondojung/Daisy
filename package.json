@@ -1,0 +1,38 @@
+{
+  "name": "prism",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "prebuild": "rimraf dist",
+    "build": "webpack --progress --mode production"
+  },
+  "dependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^16.11.1",
+    "axios": "^1.7.7",
+    "css-loader": "^6.10.0",
+    "dexie": "^4.0.10",
+    "file-loader": "^6.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.1",
+    "socket.io-client": "^4.8.1",
+    "style-loader": "^3.3.4",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "fork-ts-checker-webpack-plugin": "^6.3.4",
+    "html-webpack-plugin": "^5.4.0",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.4",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  }
+}
