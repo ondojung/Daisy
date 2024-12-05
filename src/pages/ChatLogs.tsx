@@ -5,6 +5,7 @@ import ChatInput from '../components/molecules/ChatInput'
 import { Link,useLocation } from 'react-router';
 import {ReactComponent as MenuIcon} from "../assets/icons/menu.svg";
 import {Socket} from '../util/socket'
+import util from '../util'
 
 const Header = styled.div`
     width:28rem;
@@ -110,8 +111,8 @@ function ChatLogs(){
     }
     
     const [msgData,setMsgData] =useState({
-        sender:'정온도',
-        avatar:'/profile/sadness.jpg',
+        sender:'',
+        avatar:'',
         msg:'',
         roomID:room_id,
         isMe:true
@@ -122,6 +123,12 @@ function ChatLogs(){
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
     useEffect(()=>{
+        const user = util.getUser
+        setMsgData({...msgData,
+        sender:user.name,
+        avatar:user.avatar
+        })
+        
         setVh()
         window.addEventListener('resize', setVh)
         if ("virtualKeyboard" in navigator) {
@@ -185,7 +192,7 @@ function ChatLogs(){
                 :<GrayBubbleBlock>
                 
                     <ProfileImgBlock>
-                        <ProfileImg src={e.avatar}/>
+                        <ProfileImg src={`/profile/${e.avatar}.jpg`}/>
                     </ProfileImgBlock>
                     
                     <BubbleInfoBlock>

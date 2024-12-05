@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styled from 'styled-components'
 import { Link } from 'react-router';
+import util from '../util'
 
 const ProfileBlock=styled.div`
     position:absolute;
@@ -47,7 +48,23 @@ const ChangeWallpaperBtn=styled.div`
     right:0.5rem;
 `
 
+const avatarList=['anger','embarrassment','joy','anxiety','ennui',
+'bingbong','envy','riley',
+'disgust','fear','sadness']
+
 function Home(){
+    const [avatar,setAvatar] = useState() 
+    const [name,setName] = useState() 
+    const [bg,setBg] = useState(null) 
+    
+    useEffect(()=>{
+        const initName=util.generateName()
+        const initAvatar=util.getRandomElement(avatarList)
+        const user = util.initUser(initAvatar,initName,bg)
+        setAvatar(user.avatar)
+        setName(user.name)
+        setBg(user.bg)
+    },[])
   return (
       <>
       <ChangeWallpaperBtn>
@@ -55,10 +72,10 @@ function Home(){
       </ChangeWallpaperBtn>
       <ProfileBlock>
         <ProfileImgBlock>
-            <ProfileImg src='/profile/embarrassment.jpg'/>
+            <ProfileImg src={`/profile/${avatar}.jpg`}/>
         </ProfileImgBlock>
         
-        <ProfileName>정온도</ProfileName>
+        <ProfileName>{name}</ProfileName>
         
         <Link to='/rooms'>
             <LoginBtn>로그인</LoginBtn>

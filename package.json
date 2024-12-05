@@ -18,7 +18,8 @@
     "react-router-dom": "^7.0.1",
     "socket.io-client": "^4.8.1",
     "style-loader": "^3.3.4",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -34,5 +35,9 @@
     "webpack": "^5.58.2",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.3.1"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/ondojung/Daisy",
+  "author": "ondojung <ondojung@gmail.com>",
+  "license": "MIT"
 }
