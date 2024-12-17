@@ -11,10 +11,11 @@ router.post('/add', async(req: Request, res: Response) => {
     });
 });
 
-router.get('/get', (req: Request, res: Response) => {
+router.get('/get', async(req: Request, res: Response) => {
+    const data = await DB.getRoom()
     return res.status(200).json({
         status: 200,
-        message: '유저 조회 성공'
+        data: data
     });
 });
 

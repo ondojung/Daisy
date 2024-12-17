@@ -1,6 +1,8 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import styled from 'styled-components'
 import SearchInput from '../components/atoms/SearchInput'
+import axios from 'axios'
+import util from '../util'
 
 const Header = styled.div`
     width:28rem;
@@ -19,15 +21,16 @@ const RoomListBlock = styled.div`
 const RoomBlock = styled.div`
     padding:0.5rem 0 0.5rem 0;
     border-top:0.1rem solid #e2e2e2;
-    display:flex;
+    overflow:hidden;
 `
 const RoomImgBlock = styled.div`
     flex-shrink: 0;
-    width:4rem;
-    height:4rem;
+    width:6rem;
+    height:6rem;
     background:#e2e2e2;
-    border-radius:50%;
+    border-radius:0.5rem;
     overflow:hidden;
+    float:right;
 `
 const RoomImg = styled.img`
     width:100%;
@@ -76,11 +79,19 @@ const elapsedTime = (date): string => {
 };
 
 function SearchRooms(){
-    const [roomList,setRoomList]=useState([
-        {name:'놀이방',roomImg:'https://cdn3.iconfinder.com/data/icons/baby-toys-12/100/Horse_rocking_horse_baby-512.png',overview:'놀쟝',update:new Date('2024-11-27')},
-        {name:'로비',roomImg:'https://cdn.iconscout.com/icon/premium/png-256-thumb/lobby-3-198640.png',overview:'로비입니다.',update:new Date()},
-        {name:'마피아',roomImg:'https://w7.pngwing.com/pngs/969/744/png-transparent-mafia-block-game-android-computer-icons-mafia-game-emblem-logo-thumbnail.png',overview:'다같이 마피아게임 고?',update:new Date()}
-        ])
+    const [roomList,setRoomList]=useState([])
+    const init = async()=>{
+            const res = await axios.get('/api/room/get',null);
+            setRoomList(res.data?.data)
+        }
+        
+    useEffect(()=>{
+        init()
+    },[])
+    
+    const handleJoinRoom=(e)=>{
+        util.joinRoom(e._id,e.name,e.icon)
+    }
     return (
         <>
         <Header>
@@ -90,9 +101,9 @@ function SearchRooms(){
         <RoomListBlock>
             {
                 roomList.map(e=>
-                    <RoomBlock>
+                    <RoomBlock onClick={()=>handleJoinRoom(e)}>
                         <RoomImgBlock>
-                            <RoomImg src={e.roomImg}/>
+                            <RoomImg src={e.icon}/>
                         </RoomImgBlock>
                         <RoomInfoBlock>
                         
@@ -100,7 +111,7 @@ function SearchRooms(){
                         <RoomName>{e.name}</RoomName>
                         
                          <UpdatedAt>
-                            {elapsedTime(e.update)}
+                            
                          </UpdatedAt>
                          </TopInfo>
                          

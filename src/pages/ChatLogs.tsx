@@ -41,13 +41,11 @@ const BlueBubbleBlock = styled.div`
     text-align:right;
     margin-top:1rem;
     color:white;
-    text-shadow: 1px 1px 0 #1b96fc;
 `
 const GrayBubbleBlock = styled.div`
     position:relative;
     margin-top:1rem;
     color:black;
-    text-shadow: 1px 1px 0 #f3f3f4;
 `
 const Bubble = styled.div`
     display:inline-block;
@@ -183,7 +181,7 @@ function ChatLogs(){
                 e.isMe?
                 <BlueBubbleBlock>
                     <Bubble style={{
-                        background: '#39a1f9',
+                        background: '#702EFF',
                         borderRadius: '20px 20px 10px 20px'
                     }}>
                     <span>{e.msg}</span>

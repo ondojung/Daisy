@@ -7,4 +7,8 @@ export default class DB {
         
         return result._id
     }
+    static async getRoom(){
+        const result = await Rooms.find({isPrivate:false}).limit(20);
+        return result
+    }
 }

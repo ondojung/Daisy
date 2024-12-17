@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid"; 
+import Database from '../database'
 
 // 명사 리스트
 const nouns = [
@@ -64,6 +65,14 @@ export default class {
     static getRandomElement(array) {
       return array[Math.floor(Math.random() * array.length)];
     }
-    
+    static async joinRoom(id,name,icon){
+        const DB=new Database()
+        const result = await DB.addRoom({
+            id:id,
+            name:name,
+            icon:icon
+        })
+        return result
+    }
     
 }
